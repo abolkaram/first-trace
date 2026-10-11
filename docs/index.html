@@ -41,7 +41,7 @@ CONTRACT: pending deployment</pre></section>
   <script type="module">
     import { createClient } from "https://esm.sh/genlayer-js@1.1.8";
     import { studionet } from "https://esm.sh/genlayer-js@1.1.8/chains";
-    const ADDRESS="__CONTRACT_ADDRESS__",ENDPOINT="https://studio.genlayer.com/api",ID="LANTERN-PLEDGE-01",$=s=>document.querySelector(s);let client;
+    const ADDRESS="0x26f11497B706D6E1F2C57C2B03C4E117a8a0F9D0",ENDPOINT="https://studio.genlayer.com/api",ID="LANTERN-PLEDGE-01",$=s=>document.querySelector(s);let client;
     const status=t=>$("#status").textContent=t;
     async function connect(){if(!window.ethereum)throw Error("Install MetaMask or Rabby.");const [account]=await ethereum.request({method:"eth_requestAccounts"});client=createClient({chain:studionet,endpoint:ENDPOINT,account});$("#wallet").textContent=account.slice(0,5)+"…"+account.slice(-4);return client}
     async function write(fn,args){const c=client||await connect();status("SUBMITTED / "+fn.toUpperCase());const hash=await c.writeContract({address:ADDRESS,functionName:fn,args,value:0n});status("ACCEPTED / WAITING FOR FINALIZED");const receipt=await c.waitForTransactionReceipt({hash,status:"FINALIZED",retries:180,interval:5000});if(receipt?.resultName&&receipt.resultName!=="MAJORITY_AGREE")throw Error("Transaction did not reach consensus.");status("FINALIZED / "+fn.toUpperCase()+" / "+hash.slice(0,16));return hash}

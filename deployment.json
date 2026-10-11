@@ -1,0 +1,9 @@
+{
+  "network": "StudioNet",
+  "contractAddress": "0x26f11497B706D6E1F2C57C2B03C4E117a8a0F9D0",
+  "deploymentTransaction": "0xbf29d7ef5aecfb1ddfa36006f69b086a6aed3ce2578d538e7d89c7868c350ba2",
+  "sourceSha256": "d5e95e5c4b16342f73f1c58bf26221f7f655a3bee24ad904c873f881503c598c",
+  "sourceCommit": "e5934286ca929f63386a3961fe99d239ff1d5032",
+  "repository": "https://github.com/abolkaram/first-trace",
+  "publicSite": "https://first-trace.pages.dev/"
+}

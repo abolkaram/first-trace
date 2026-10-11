@@ -1,0 +1,58 @@
+{
+  "traceId": "LANTERN-PLEDGE-01",
+  "contract": "0x26f11497B706D6E1F2C57C2B03C4E117a8a0F9D0",
+  "transactions": {
+    "pin": "0x185f02c3c451b13f09023e2323301a5429a2539506121f8d9bd37a62abf2d689",
+    "locate": "0x8842de732f839823e96b4017b9babf8261c2095a4c848ae1c154b2167e7ef4bb"
+  },
+  "final": {
+    "basis": [
+      "ABSENT",
+      "PRESENT_EXACT",
+      "PRESENT_EXACT",
+      "PRESENT_SEMANTIC"
+    ],
+    "claim": "The release will publish a machine-readable accessibility report with every stable build.",
+    "first_index": 1,
+    "id": "LANTERN-PLEDGE-01",
+    "manifest_digest": "975cbc3838588cbf4f4f83a8db4a989656bd27fd43d899eb24d4ca46348f9f8a",
+    "manifest_url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/manifest.json",
+    "owner": "0x412d61db014fCdDda12e33b826f63B8ef9AC2E87",
+    "presence": [
+      false,
+      true,
+      true,
+      true
+    ],
+    "snapshot_digests": [
+      "f2e96ffdb356f40cdba0b74a44ad3c30fbeef6f4db19294a899e70b9a2336cbf",
+      "3ebf6383f07423958316bb22d9cbdb05646aa1cc2721fde6724674934d10c4a6",
+      "56dd68f39ed743d4de6cfb6b6b40d0623735f781592211ad8a0eba42ddd3d067",
+      "409c103a0399a9c4353048e9c812dde83cac82c7a66a2ba861f8bdc973f84ec2"
+    ],
+    "snapshots": [
+      {
+        "index": 0,
+        "label": "Draft 01",
+        "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-01.txt"
+      },
+      {
+        "index": 1,
+        "label": "Draft 02",
+        "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-02.txt"
+      },
+      {
+        "index": 2,
+        "label": "Release Candidate",
+        "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-03.txt"
+      },
+      {
+        "index": 3,
+        "label": "Stable Release",
+        "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-04.txt"
+      }
+    ],
+    "state": "FOUND"
+  },
+  "fixtureDisclosure": "The ordered public snapshots are repository-owner demonstration records, not independent publishers."
+}
