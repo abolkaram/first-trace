@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>First Trace</title><meta name="description" content="Locate the earliest semantic appearance of a claim in a frozen public timeline.">
+  <style>
+    :root{--night:#11151b;--paper:#e9e0cb;--rust:#a7462c;--ochre:#ce9a46;--sage:#7c9177;--blue:#38596b;--line:#252b31}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--paper);font-family:Georgia,serif}
+    header{position:fixed;left:0;top:0;bottom:0;width:88px;border-right:1px solid #59616a;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:24px 0;z-index:5;background:#0c1015}
+    .mark{writing-mode:vertical-rl;transform:rotate(180deg);font:700 12px monospace;letter-spacing:4px}.depth{font:11px monospace;color:#98a0a6}.wallet{writing-mode:vertical-rl;border:1px solid #697078;background:transparent;color:var(--paper);padding:12px 9px;font:12px monospace;cursor:pointer}
+    main{margin-left:88px}.opening{min-height:100vh;display:grid;grid-template-columns:1fr 320px;align-items:end;padding:8vh 8vw 8vh;position:relative;background:radial-gradient(circle at 75% 22%,#263543 0,transparent 38%)}
+    .opening h1{font-size:clamp(70px,14vw,190px);font-weight:400;letter-spacing:-10px;line-height:.72;margin:0}.opening h1 i{display:block;color:var(--ochre);font-weight:400}.lead{font:14px/1.8 monospace;border-top:1px solid #8c9297;padding-top:18px;margin-bottom:2vh}
+    .reel{position:absolute;left:8vw;right:8vw;top:9vh;border:1px solid #6d7479;padding:14px 15px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#151b22}.reel b{font:11px monospace;letter-spacing:2px}.reel input{background:transparent;border:0;border-bottom:1px solid var(--ochre);color:white;padding:9px;font:12px monospace;min-width:0;outline:none}.reel button,.actions button{border:1px solid var(--paper);color:var(--paper);background:transparent;padding:11px 15px;font:700 11px monospace;text-transform:uppercase;cursor:pointer}.reel button:hover,.actions button:hover{background:var(--paper);color:var(--night)}
+    .core{position:relative}.ruler{position:absolute;left:28px;top:0;bottom:0;width:34px;border-right:1px solid #73797d;background:repeating-linear-gradient(to bottom,transparent 0 48px,#73797d 49px 50px)}
+    .layer{min-height:68vh;padding:11vh 10vw 10vh 14vw;border-top:1px solid #4e555b;display:grid;grid-template-columns:120px 1fr;gap:6vw;position:relative;transition:filter .4s}.layer:before{content:attr(data-depth);position:absolute;left:18px;top:24px;font:11px monospace;color:#adb1b4}.layer:nth-child(2){background:#202c35}.layer:nth-child(3){background:#303b34}.layer:nth-child(4){background:#493b2e}.layer:nth-child(5){background:#482a25}.layer .index{font:80px/.8 Georgia;color:rgba(255,255,255,.18)}.layer h2{font-size:clamp(36px,6vw,80px);font-weight:400;margin:0 0 20px}.layer p{max-width:680px;font:14px/1.8 monospace;color:#d4d4ce}.basis{display:inline-block;margin-top:25px;border:1px solid currentColor;padding:9px 12px;font:700 11px monospace;letter-spacing:1px}.layer.present{box-shadow:inset 14px 0 0 var(--ochre)}.layer.first:after{content:"FIRST POSITIVE TRACE";position:absolute;right:5vw;top:7vh;border:3px double var(--paper);padding:15px;transform:rotate(4deg);font:700 12px monospace;color:var(--paper)}
+    .actions{position:sticky;bottom:0;z-index:4;background:#0c1015;border-top:1px solid #697078;padding:14px 5vw;display:flex;gap:12px;align-items:center}.actions button.primary{background:var(--rust);border-color:var(--rust)}.status{margin-left:auto;font:11px monospace;color:var(--ochre);text-align:right}
+    .finding{padding:15vh 10vw;background:var(--paper);color:var(--night);display:grid;grid-template-columns:.7fr 1.3fr;gap:8vw}.finding h2{font-size:clamp(48px,8vw,110px);font-weight:400;line-height:.8;margin:0}.finding pre{white-space:pre-wrap;font:13px/1.8 monospace;border-left:5px solid var(--rust);padding-left:25px;word-break:break-word}
+    @media(max-width:760px){header{width:48px}.wallet{font-size:9px}main{margin-left:48px}.opening{grid-template-columns:1fr;padding:18vh 7vw 8vh}.opening h1{letter-spacing:-5px}.reel{left:5vw;right:5vw;grid-template-columns:1fr}.layer{grid-template-columns:1fr;padding-left:20vw}.layer .index{font-size:50px}.layer.first:after{position:static;display:inline-block;margin-top:24px}.finding{grid-template-columns:1fr}.actions{flex-wrap:wrap}.status{width:100%;text-align:left;margin:0}}
+  </style>
+</head>
+<body>
+  <header><div class="mark">FIRST TRACE / FIELD CORE</div><div class="depth">0m<br>↓<br>4m</div><button class="wallet" id="wallet">LINK WALLET</button></header>
+  <main>
+    <section class="opening">
+      <div class="reel"><b>TIMELINE REEL</b><input id="manifest" value="https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/manifest.json" aria-label="Timeline manifest URL"><button id="pin">Pin reel</button></div>
+      <h1>Find the<i>first trace.</i></h1>
+      <p class="lead">Four frozen layers. One bounded claim. Validators inspect every stratum; the contract derives the earliest positive index instead of trusting a narrator's date.</p>
+    </section>
+    <section class="core" id="core"><div class="ruler"></div>
+      <article class="layer" data-depth="1.0m" data-index="0"><div class="index">01</div><div><h2>Draft 01</h2><p>Stable-build notes exist, but the accessibility publication commitment has not entered the record.</p><span class="basis">UNREAD</span></div></article>
+      <article class="layer" data-depth="2.0m" data-index="1"><div class="index">02</div><div><h2>Draft 02</h2><p>The claim appears: every stable build will publish a machine-readable accessibility report.</p><span class="basis">UNREAD</span></div></article>
+      <article class="layer" data-depth="3.0m" data-index="2"><div class="index">03</div><div><h2>Release Candidate</h2><p>The stable-build commitment is restated while candidate reports remain provisional.</p><span class="basis">UNREAD</span></div></article>
+      <article class="layer" data-depth="4.0m" data-index="3"><div class="index">04</div><div><h2>Stable Release</h2><p>The report is attached and the commitment is carried forward into later stable builds.</p><span class="basis">UNREAD</span></div></article>
+    </section>
+    <div class="actions"><button class="primary" id="locate">Excavate timeline</button><button id="read">Read field note</button><a href="https://github.com/abolkaram/first-trace" target="_blank"><button>Open source</button></a><div class="status" id="status">NO AUTHORITATIVE FIELD NOTE LOADED</div></div>
+    <section class="finding"><h2>Field<br>note</h2><pre id="note">TRACE: LANTERN-PLEDGE-01
+STATE: NOT LOADED
+FIRST INDEX: pending
+CONTRACT: pending deployment</pre></section>
+  </main>
+  <script type="module">
+    import { createClient } from "https://esm.sh/genlayer-js@1.1.8";
+    import { studionet } from "https://esm.sh/genlayer-js@1.1.8/chains";
+    const ADDRESS="__CONTRACT_ADDRESS__",ENDPOINT="https://studio.genlayer.com/api",ID="LANTERN-PLEDGE-01",$=s=>document.querySelector(s);let client;
+    const status=t=>$("#status").textContent=t;
+    async function connect(){if(!window.ethereum)throw Error("Install MetaMask or Rabby.");const [account]=await ethereum.request({method:"eth_requestAccounts"});client=createClient({chain:studionet,endpoint:ENDPOINT,account});$("#wallet").textContent=account.slice(0,5)+"…"+account.slice(-4);return client}
+    async function write(fn,args){const c=client||await connect();status("SUBMITTED / "+fn.toUpperCase());const hash=await c.writeContract({address:ADDRESS,functionName:fn,args,value:0n});status("ACCEPTED / WAITING FOR FINALIZED");const receipt=await c.waitForTransactionReceipt({hash,status:"FINALIZED",retries:180,interval:5000});if(receipt?.resultName&&receipt.resultName!=="MAJORITY_AGREE")throw Error("Transaction did not reach consensus.");status("FINALIZED / "+fn.toUpperCase()+" / "+hash.slice(0,16));return hash}
+    function paint(data){document.querySelectorAll(".layer").forEach((layer,index)=>{layer.classList.toggle("present",!!data.presence?.[index]);layer.classList.toggle("first",index===data.first_index);layer.querySelector(".basis").textContent=data.basis?.[index]||"PINNED"});$("#note").textContent=`TRACE: ${data.id}\nSTATE: ${data.state}\nCLAIM: ${data.claim}\nFIRST INDEX: ${data.first_index}\nFIRST LAYER: ${data.first_index>=0?data.snapshots[data.first_index].label:"none"}\nMANIFEST DIGEST: ${data.manifest_digest}`}
+    async function read(){const c=client||createClient({chain:studionet,endpoint:ENDPOINT});const data=await c.readContract({address:ADDRESS,functionName:"get_trace",args:[ID]});paint(data);status("READ / AUTHORITATIVE STATE "+data.state);if(data.first_index>=0)document.querySelector(`[data-index="${data.first_index}"]`).scrollIntoView({behavior:"smooth",block:"center"});return data}
+    $("#wallet").onclick=()=>connect().catch(e=>status("ERROR / "+e.message);
+    $("#pin").onclick=async()=>{try{await write("pin",[$("#manifest").value.trim()]);await read()}catch(e){status("ERROR / "+e.message)}};
+    $("#locate").onclick=async()=>{try{await write("locate",[ID]);await read()}catch(e){status("ERROR / "+e.message)}};
+    $("#read").onclick=()=>read().catch(e=>status("ERROR / "+e.message));
+  </script>
+</body>
+</html>

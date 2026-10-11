@@ -1,0 +1,1 @@
+Lantern stable release. A machine-readable accessibility report is attached to this build and is required for every later stable build. The release index preserves the report URL and checksum.

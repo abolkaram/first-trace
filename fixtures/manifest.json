@@ -1,0 +1,10 @@
+{
+  "trace_id": "LANTERN-PLEDGE-01",
+  "claim": "The release will publish a machine-readable accessibility report with every stable build.",
+  "snapshots": [
+    {"label": "Draft 01", "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-01.txt"},
+    {"label": "Draft 02", "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-02.txt"},
+    {"label": "Release Candidate", "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-03.txt"},
+    {"label": "Stable Release", "url": "https://raw.githubusercontent.com/abolkaram/first-trace/main/fixtures/snapshot-04.txt"}
+  ]
+}

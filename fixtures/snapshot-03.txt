@@ -1,0 +1,1 @@
+Lantern release candidate. Every stable build publishes a machine-readable accessibility report. Candidate builds may publish provisional reports; only stable reports are retained in the public release index.

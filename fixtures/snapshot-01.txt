@@ -1,0 +1,1 @@
+Lantern release draft 01. Stable builds will include installation notes and a human-readable quality summary. Accessibility checks are under evaluation and no publication commitment is made in this draft.
