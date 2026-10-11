@@ -15,8 +15,8 @@ def test_all_decision_fields_are_consensus_bound():
         assert token in SRC
 
 def test_first_index_is_derived_after_consensus():
-    assert "if value and first<0: first=index" in SRC
-    assert 'trace.state="FOUND" if first>=0 else "NOT_FOUND"' in SRC
+    assert "if value and first==len(presence): first=index" in SRC
+    assert 'trace.state="FOUND" if first<len(presence) else "NOT_FOUND"' in SRC
 
 def test_replay_and_duplicate_guards():
     for token in ("trace or manifest already pinned","only a pinned trace can be located","public HTTPS URL required"):

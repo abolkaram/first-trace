@@ -49,7 +49,7 @@ class Trace:
     state: str
     presence_json: str
     basis_json: str
-    first_index: int
+    first_index: u256
 
 class FirstTrace(gl.Contract):
     traces: TreeMap[str,Trace]
@@ -81,7 +81,7 @@ class FirstTrace(gl.Contract):
         if key in self.traces or digest in self.manifests: raise gl.vm.UserError("[EXPECTED] trace or manifest already pinned")
         if not re.fullmatch(r"[0-9a-f]{64}",digest) or len(digests)!=len(manifest["snapshots"]) or any(not re.fullmatch(r"[0-9a-f]{64}",str(item)) for item in digests): raise gl.vm.UserError("[LLM] exact snapshot digests required")
         self.manifests[digest]=True
-        self.traces[key]=Trace(gl.message.sender_address,manifest["claim"],url,digest,json.dumps(manifest["snapshots"]),json.dumps(digests),"PINNED","[]","[]",-1)
+        self.traces[key]=Trace(gl.message.sender_address,manifest["claim"],url,digest,json.dumps(manifest["snapshots"]),json.dumps(digests),"PINNED","[]","[]",len(manifest["snapshots"]))
 
     @gl.public.write
     def locate(self,trace_id:str)->dict:
@@ -105,13 +105,13 @@ class FirstTrace(gl.Contract):
                 if value!=(basis[index]!="ABSENT"): raise gl.vm.UserError("[LLM] presence and basis disagree")
             return {"presence":presence,"basis":basis}
         result=gl.eq_principle.prompt_comparative(assess,principle="independently refetch and digest-check every frozen snapshot, then agree exactly on the complete presence vector and closed basis codes")
-        presence=result["presence"]; first=-1
+        presence=result["presence"]; first=len(presence)
         for index,value in enumerate(presence):
-            if value and first<0: first=index
-        trace.presence_json=json.dumps(presence); trace.basis_json=json.dumps(result["basis"]); trace.first_index=first; trace.state="FOUND" if first>=0 else "NOT_FOUND"; self.traces[key]=trace
-        return {"state":trace.state,"first_index":first,"presence":presence,"basis":result["basis"]}
+            if value and first==len(presence): first=index
+        trace.presence_json=json.dumps(presence); trace.basis_json=json.dumps(result["basis"]); trace.first_index=first; trace.state="FOUND" if first<len(presence) else "NOT_FOUND"; self.traces[key]=trace
+        return {"state":trace.state,"first_index":first if trace.state=="FOUND" else -1,"presence":presence,"basis":result["basis"]}
 
     @gl.public.view
     def get_trace(self,trace_id:str)->dict:
         key,trace=self._get(trace_id)
-        return {"id":key,"owner":trace.owner.as_hex,"claim":trace.claim,"manifest_url":trace.manifest_url,"manifest_digest":trace.manifest_digest,"state":trace.state,"snapshots":json.loads(trace.snapshots_json),"snapshot_digests":json.loads(trace.snapshot_digests_json),"presence":json.loads(trace.presence_json),"basis":json.loads(trace.basis_json),"first_index":trace.first_index}
+        return {"id":key,"owner":trace.owner.as_hex,"claim":trace.claim,"manifest_url":trace.manifest_url,"manifest_digest":trace.manifest_digest,"state":trace.state,"snapshots":json.loads(trace.snapshots_json),"snapshot_digests":json.loads(trace.snapshot_digests_json),"presence":json.loads(trace.presence_json),"basis":json.loads(trace.basis_json),"first_index":trace.first_index if trace.state=="FOUND" else -1}
